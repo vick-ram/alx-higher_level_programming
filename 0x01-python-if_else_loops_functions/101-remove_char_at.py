@@ -7,4 +7,4 @@ def remove_char_at(str, n):
     for i in range(len(str)):
         if i != n:
             result += str[i]
-    return result	
+    return result
