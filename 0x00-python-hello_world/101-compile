@@ -1,0 +1,21 @@
+#!/bin/bash
+# Check if PYFILE is set
+if [ -z "$PYFILE" ]
+then
+	echo "PYFILE is not set"
+	exit 1
+fi
+
+# Check if PYFILE exists
+if [ ! -f "$PYFILE" ]
+then
+	echo "$PYFILE does not exist"
+	exit 1
+fi
+
+# Compile the python file
+echo "Compiling $PYFILE ..."
+python3 -m compileall -b $PYFILE
+
+# Rename the output file
+mv "${PYFILE}c" "$PYFILEc"
