@@ -1,16 +1,13 @@
 #include "lists.h"
 /**
-*compare_and_reverse - a helper function to reverse
-second half of a string and compare it with first
-*@head: - first struct element
-*@mid: - middle element
-*Return: - returns reversed
+* reverse - helper function to reverse a list
+*@head: - first node
+*Return: - returns a list
 */
-int compare_and_reverse(listint_t **head, listint_t *mid)
+listint_t *reverse(listint_t *head)
 {
-	listint_t *prev = NULL, *curr = mid, *next;
-	int res = 1;
-	listint_t *p1, *p2;
+	listint_t *prev = NULL;
+	listint_t *curr = head, *next;
 
 	while (curr != NULL)
 	{
@@ -19,26 +16,7 @@ int compare_and_reverse(listint_t **head, listint_t *mid)
 		prev = curr;
 		curr = next;
 	}
-	p1 = *head, p2 = prev;
-	while (p1 != NULL && p2 != NULL)
-	{
-		if (p1->n != p2->n)
-		{
-			res = 0;
-			break;
-		}
-		p1 = p1->next;
-		p2 = p2->next;
-	}
-	curr = prev;
-	while (curr != NULL)
-	{
-		next = curr->next;
-		curr->next = prev;
-		prev = curr;
-		curr = next;
-	}
-	return (res);
+	return (prev);
 }
 /**
 *is_palindrome - checks if linked list is palindrome
@@ -48,7 +26,7 @@ int compare_and_reverse(listint_t **head, listint_t *mid)
 int is_palindrome(listint_t **head)
 {
 	listint_t *slow = *head, *fast = *head;
-	listint_t *mid = NULL;
+	listint_t *first, *second;
 
 	if (*head == NULL || (*head)->next == NULL)
 		return (1);
@@ -57,6 +35,18 @@ int is_palindrome(listint_t **head)
 		fast = fast->next->next;
 		slow = slow->next;
 	}
-	mid = (fast == NULL) ? slow : slow->next;
-	return (compare_and_reverse(head, mid));
+	if (fast != NULL)
+	{
+		slow = slow->next;
+	}
+	second = reverse(slow);
+	first = *head;
+	while (second != NULL)
+	{
+		if (first->n != second->n)
+			return (0);
+		first = first->next;
+		second = second->next;
+	}
+	return (1);
 }
