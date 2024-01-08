@@ -1,6 +1,6 @@
 #include <object.h>
 #include <listobject.h>
-#include <python.h>
+#include <Python.h>
 /**
 *print_python_list_info - function to print python basic info
 *@p: - python object param
