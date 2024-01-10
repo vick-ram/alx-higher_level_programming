@@ -19,8 +19,8 @@ void print_python_list(PyObject *p)
 	for (i = 0; i < size; i++)
 	{
 		element = PyList_GetItem(p, i);
-		printf("Element %ld: %s\n", i, Py_TYPE(element)->tp_name);
-		if (strcmp(Py_TYPE(element)->tp_name, "bytes") == 0)
+		printf("Element %ld: %s\n", i, ((PyObject *)element)->ob_type->tp_name);
+		if (strcmp(((PyObject *)element)->ob_type->tp_name, "bytes") == 0)
 		{
 			printf("[.] bytes object info\n");
 			printf("  size: %ld\n", PyBytes_Size(element));
