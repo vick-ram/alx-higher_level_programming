@@ -5,6 +5,7 @@ void print_python_list(PyObject *p)
 {
 	Py_ssize_t size, i;
 	PyObject *element;
+	char *c;
 
 	printf("[*] Python list info\n");
 	size = PyList_Size(p);
@@ -21,9 +22,10 @@ void print_python_list(PyObject *p)
 			printf("  size: %ld\n", PyBytes_Size(element));
 			printf("  trying string: %s\n", PyBytes_AsString(element));
 			printf("  first 10 bytes: ");
+			c = PyBytes_AsString(element);
 			for (Py_ssize_t j = 0; j < PyBytes_Size(element) && j < 10; j++)
 			{
-				printf("%02x ", (unsigned char)PyBytes_AsString(element)[j]);
+				printf("%02x ", (unsigned char)c[j]);
 			}
 			printf("\n");
 		}
@@ -31,6 +33,7 @@ void print_python_list(PyObject *p)
 }
 void print_python_bytes(PyObject *p)
 {
+	char *c;
 	printf("[.] bytes object info\n");
 	if (!PyBytes_Check(p))
 	{
@@ -39,10 +42,11 @@ void print_python_bytes(PyObject *p)
 	}
 	printf("  size: %ld\n", PyBytes_Size(p));
 	printf("  trying string: %s\n", PyBytes_AsString(p));
-	rintf("  first 10 bytes: ");
+	printf("  first 10 bytes: ");
+	c = PyBytes_AsString(p);
 	for (Py_ssize_t i = 0; i < PyBytes_Size(p) && i < 10; i++)
 	{
-		printf("%02x ", (unsigned char)PyBytes_AsString(p)[i]);
+		printf("%02x ", (unsigned char)c[i]);
 	}
 	printf("\n");
 }
