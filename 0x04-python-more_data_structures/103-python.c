@@ -1,9 +1,13 @@
 #include <Python.h>
 #include <stdio.h>
-
+/**
+* print_python_list - prints a python list
+* @p: - pyobject type param
+* Return: - returns nothing
+*/
 void print_python_list(PyObject *p)
 {
-	Py_ssize_t size, i;
+	Py_ssize_t size, i, j;
 	PyObject *element;
 	char *c;
 
@@ -23,7 +27,7 @@ void print_python_list(PyObject *p)
 			printf("  trying string: %s\n", PyBytes_AsString(element));
 			printf("  first 10 bytes: ");
 			c = PyBytes_AsString(element);
-			for (Py_ssize_t j = 0; j < PyBytes_Size(element) && j < 10; j++)
+			for (j = 0; j < PyBytes_Size(element) && j < 10; j++)
 			{
 				printf("%02x ", (unsigned char)c[j]);
 			}
@@ -31,9 +35,16 @@ void print_python_list(PyObject *p)
 		}
 	}
 }
+/**
+* print_python_bytes - prints python bytes
+* @p: - pyobject type param
+* Return: - returns nothing
+*/
 void print_python_bytes(PyObject *p)
 {
 	char *c;
+	Py_ssize_t i;
+
 	printf("[.] bytes object info\n");
 	if (!PyBytes_Check(p))
 	{
@@ -44,7 +55,7 @@ void print_python_bytes(PyObject *p)
 	printf("  trying string: %s\n", PyBytes_AsString(p));
 	printf("  first 10 bytes: ");
 	c = PyBytes_AsString(p);
-	for (Py_ssize_t i = 0; i < PyBytes_Size(p) && i < 10; i++)
+	for (i = 0; i < PyBytes_Size(p) && i < 10; i++)
 	{
 		printf("%02x ", (unsigned char)c[i]);
 	}
