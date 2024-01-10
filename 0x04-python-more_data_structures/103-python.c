@@ -24,20 +24,27 @@ void print_python_list(PyObject *p)
 			PyErr_SetString(PyExc_IndexError, "index out of range");
 			return;
 		}
-		printf("Element %ld: %s\n", i, ((PyObject *)element)->ob_type->tp_name);
-		if (strcmp(((PyObject *)element)->ob_type->tp_name, "bytes") == 0)
+
+		printf("Element %ld: %s\n", i, element->ob_type->tp_name);
+		if (strcmp(element->ob_type->tp_name, "bytes") == 0)
 		{
+			if (!PyBytes_Check(element))
+			{
+				PyErr_SetString(PyExc_TypeError, "not a bytes object");
+				return;
+			}
 			printf("[.] bytes object info\n");
 			printf("  size: %ld\n", PyBytes_Size(element));
 			printf("  trying string: %s\n", PyBytes_AsString(element));
 			printf("  first 10 bytes: ");
-			c = PyBytes_AsString(element);
+			c = ((PyBytesObject *)element)->ob_sval;
 			for (j = 0; j < PyBytes_Size(element) && j < 10; j++)
 			{
 				printf("%02x ", (unsigned char)c[j]);
 			}
 			printf("\n");
 		}
+		Py_DECREF(element);
 	}
 }
 /**
@@ -59,7 +66,7 @@ void print_python_bytes(PyObject *p)
 	printf("  size: %ld\n", PyBytes_Size(p));
 	printf("  trying string: %s\n", PyBytes_AsString(p));
 	printf("  first 10 bytes: ");
-	c = PyBytes_AsString(p);
+	c = ((PyBytesObject *)p)->ob_sval;
 	for (i = 0; i < PyBytes_Size(p) && i < 10; i++)
 	{
 		printf("%02x ", (unsigned char)c[i]);
