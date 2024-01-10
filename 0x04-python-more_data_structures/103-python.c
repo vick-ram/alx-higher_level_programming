@@ -19,6 +19,11 @@ void print_python_list(PyObject *p)
 	for (i = 0; i < size; i++)
 	{
 		element = PySequence_GetItem(p, i);
+		if (element == NULL)
+		{
+			PyErr_SetString(PyExc_IndexError, "index out of range");
+			return;
+		}
 		printf("Element %ld: %s\n", i, ((PyObject *)element)->ob_type->tp_name);
 		if (strcmp(((PyObject *)element)->ob_type->tp_name, "bytes") == 0)
 		{
