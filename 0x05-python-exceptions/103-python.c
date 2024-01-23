@@ -51,7 +51,7 @@ void print_python_float(PyObject *p)
 		return;
 	}
 	value = ((PyFloatObject *)p)->ob_fval;
-	printf("  value: %g\n", value);
+	printf("  value: %.15g\n", value);
 }
 /**
 *print_python_list - prints python list
