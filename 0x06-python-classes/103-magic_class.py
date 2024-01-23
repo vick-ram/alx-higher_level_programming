@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""This is 103-magic_class module"""
 import math
 
 class MagicClass:
