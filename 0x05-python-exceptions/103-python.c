@@ -21,17 +21,15 @@ void print_python_bytes(PyObject *p)
 	str = ((PyBytesObject *)p)->ob_sval;
 	printf("  size: %ld\n", size);
 	printf("  trying string: ");
-	for (i = 0; i < size; i++)
+	for (i = 0; i < size && str[i] != '\0'; i++)
 	{
-		if (str[i] == '\0')
-			break;
 		if (isprint(str[i]))
 			putchar(str[i]);
 		else
 			putchar('?');
 	}
 	printf("\n");
-	max_bytes = size > 10 ? 10: size;
+	max_bytes = size + 1 > 10 ? 10 : size + 1;
 	printf("  first %ld bytes: ", max_bytes);
 	for (i = 0; i < max_bytes; i++)
 		printf("%02hhx%s", str[i], i + 1 < max_bytes ? " " : "");
