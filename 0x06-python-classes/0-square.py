@@ -14,6 +14,9 @@ class Square:
         """
 	Initializes an instance of Square.
 
-	Currently, this method does not initialize any instance variables.
+        The __init__ method does not initialize any instance variables.
+
+	Note:
+	    Do not include the `self` parameter in the ``Args`` section.
 	"""
         pass
