@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-"""This module defines a class that privatizes an instance with error
+"""This module defines a class that privatizes
+n instance with error
 """
+
 
 class Square:
     """Square class defines square"""
