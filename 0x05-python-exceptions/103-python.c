@@ -1,8 +1,8 @@
 #include <Python.h>
 #include <stdio.h>
 /**
-*print_python_bytes - prints python bytes
-*@p: - pyobject type
+*print_python_bytes - prints python objects
+*@p: - pyobject type param
 *Return: - returns nothing
 */
 void print_python_bytes(PyObject *p)
@@ -16,8 +16,8 @@ void print_python_bytes(PyObject *p)
 		printf("  [ERROR] Invalid Bytes Object\n");
 		return;
 	}
-	size = PyBytes_Size(p);
-	str = PyBytes_AsString(p);
+	size = ((PyVarObject *)p)->ob_size;
+	str = ((PyBytesObject *)p)->ob_sval;
 	printf("  size: %ld\n", size);
 	printf("  trying string: %s\n", str);
 	max_bytes = size + 1 > 10 ? 10 : size + 1;
@@ -27,8 +27,8 @@ void print_python_bytes(PyObject *p)
 	printf("\n");
 }
 /**
-*print_python_float - prints python floats
-*@p: - pyobject type param
+*print_python_float - prints python float
+*@p: - python object type param
 *Return: - returns nothing
 */
 void print_python_float(PyObject *p)
@@ -41,12 +41,12 @@ void print_python_float(PyObject *p)
 		printf("  [ERROR] Invalid Float Object\n");
 		return;
 	}
-	value = PyFloat_AsDouble(p);
+	value = ((PyFloatObject *)p)->ob_fval;
 	printf("  value: %g\n", value);
 }
 /**
 *print_python_list - prints python list
-*@p: - pyobject param
+*@p: - python object param
 *Return: - returns nothing
 */
 void print_python_list(PyObject *p)
@@ -60,14 +60,14 @@ void print_python_list(PyObject *p)
 		printf("  [ERROR] Invalid List Object\n");
 		return;
 	}
-	size = PyList_GET_SIZE(p);
+	size = ((PyVarObject *)p)->ob_size;
 	alloc = ((PyListObject *)p)->allocated;
 	printf("[*] Size of the Python List = %ld\n", size);
 	printf("[*] Allocated = %ld\n", alloc);
 	for (i = 0; i < size; i++)
 	{
-		item = PyList_GET_ITEM(p, i);
-		printf("Element %ld: %s\n", i, Py_TYPE(item)->tp_name);
+		item = ((PyListObject *)p)->ob_item[i];
+		printf("Element %ld: %s\n", i, item->ob_type->tp_name);
 		if (PyBytes_Check(item))
 			print_python_bytes(item);
 		else if (PyFloat_Check(item))
