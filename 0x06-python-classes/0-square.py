@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+This is a first python class that does nothing other than display class
+object
+"""
 class Square:
     """
     This is Square class
