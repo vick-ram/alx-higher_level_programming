@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 """Defines classes"""
+
+
 class Square:
     """
-    This class represents a square and defines its properties and behavior.
-
+    This class represents a square and defines
+    its properties and behavior.
     Attributes:
         size (int): The size of the square.
-
     Methods:
         area(self): Returns the area of the square.
     """
@@ -14,7 +15,6 @@ class Square:
     def __init__(self, size=0):
         """
         Initializes a new Square instance with an optional size.
-
         Args:
             size (int): The size of the square (default is 0).
         """
@@ -24,7 +24,6 @@ class Square:
     def size(self):
         """
         Retrieves the size of the square.
-
         Returns:
             int: The size of the square.
         """
@@ -34,10 +33,8 @@ class Square:
     def size(self, value):
         """
         Sets the size of the square.
-
         Args:
             value (int): The new size to set.
-
         Raises:
             TypeError: If the value is not an integer.
             ValueError: If the value is less than 0.
