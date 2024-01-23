@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+"""Defines classes"""
 class Square:
     """
     This class represents a square and defines its properties and behavior.
