@@ -3,6 +3,8 @@
 This is a first python class that does nothing other than display class
 object
 """
+
+
 class Square:
     """
     This is Square class
@@ -12,11 +14,11 @@ class Square:
     """
     def __init__(self):
         """
-	Initializes an instance of Square.
+        Initializes an instance of Square.
 
         The __init__ method does not initialize any instance variables.
 
-	Note:
-	    Do not include the `self` parameter in the ``Args`` section.
-	"""
+        Note:
+            Do not include the `self` parameter in the ``Args`` section.
+        """
         pass
