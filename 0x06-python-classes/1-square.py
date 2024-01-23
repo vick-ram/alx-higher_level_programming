@@ -14,7 +14,7 @@ class Square(object):
         Note:
             Do not include the `self` parameter in the ``Args`` section.
         Args:
-            size (no-type): size param
+            size (int): size param
  
           """
         self.__size = size
