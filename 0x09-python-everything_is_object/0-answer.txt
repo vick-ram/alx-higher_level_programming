@@ -1,1 +1,1 @@
-PyTypeObject
+Py_TYPE
