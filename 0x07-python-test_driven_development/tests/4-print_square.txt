@@ -1,1 +1,73 @@
+"""
+Use 4-print_square.py Tests
+===========================
 
+This library module has a function called ```print_square()```.
+
+Numbers
+=======
+
+```print_square()``` prints a square of a given size with the character '#'.
+
+::
+
+    >>> print_square = __import__('4-print_square').print_square
+    >>> print_square(4)
+    ####
+    ####
+    ####
+    ####
+
+    >>> print_square(10)
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+
+    >>> print_square(0)
+
+    >>> print_square(1)
+    #
+
+Non-Numbers
+===========
+
+```print_square()``` raises a TypeError if the size is not an integer.
+
+::
+
+    try:
+        print_square('two')
+    except TypeError as e:
+        print(e)
+
+Negative Numbers
+================
+
+```print_square()``` raises a ValueError if the size is less than 0.
+
+::
+
+    try:
+        print_square(-1)
+    except ValueError as e:
+        print(e)
+
+Floating Point Numbers
+======================
+
+```print_square()``` raises a TypeError if the size is a floating point number and is less than 0.
+
+::
+
+    try:
+        print_square(-1.5)
+    except TypeError as e:
+        print(e)
+"""
