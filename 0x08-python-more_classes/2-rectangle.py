@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-
-
 """Module called 2-rectangle that adds the functionality
 of the Rectangle class with area and parameter
 """
+
+
 class Rectangle:
     """This rectangle class defines additional area
     and parameter
@@ -46,6 +46,7 @@ class Rectangle:
             The area of the rectangle
         """
         return self.__width * self.__height
+
     def perimeter(self):
         """
         Returns the perimeter of the rectangle.
