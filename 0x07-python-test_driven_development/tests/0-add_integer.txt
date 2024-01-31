@@ -1,27 +1,155 @@
-"""
->>> add_integer = __import__('0-add_integer').add_integer
->>> print(add_integer(1, 2))
-3
->>> print(add_integer(100, -2))
-98
->>> print(add_integer(2))
-100
->>> print(add_integer(100.3, -2))
-98
->>> print(add_integer(5.5, 6.6))
-11
->>> print(add_integer(0, 0))
-0
->>> print(add_integer(3.5, 2))
-5
->>> print(add_integer(-10, -20))
--30
->>> print(add_integer(4, "School"))
-Traceback (most recent call last):
-    ...
-TypeError: b must be an integer
->>> print(add_integer(None))
-Traceback (most recent call last):
-    ...
-TypeError: a must be an integer
-"""
+=================================================
+How to use 0-add_integer.py
+=================================================
+
+This module has a function called ```add_integer()```
+
+Numbers
+=======
+```add_integer()``` returns a test for addition of ints and floats
+
+::
+
+    >>> add_integer = __import__('0-add_integer').add_integer
+    >>> add_integer(1, 2)
+    3
+
+It also works for negative b.
+
+::
+
+    >>> add_integer(100, -2)
+    98
+
+since b is initialized, tests for only when a is passed.
+
+::
+
+    >>> add_integer(2)
+    100
+
+tests when floating a and negative b are passed
+
+::
+
+    >>> add_integer(100.3, -2)
+    98
+
+tests for both a and b floating points
+
+::
+
+    >>> add_integer(5.5, 6.6)
+    11
+
+tests when both a and b are zero
+
+::
+
+    >>> add_integer(0, 0)
+    0
+
+tests when both posiititve but a is floating
+
+::
+
+    >>> add_integer(3.5, 2)
+    5
+
+test for negative floating a and b positive
+
+::
+
+    >>> add_integer(-10.5, 5)
+    -5
+
+test for both a and b floating
+
+::
+    >>> add_integer(-4.7, -2.3)
+    -6
+
+
+test for both negatives integers
+
+::
+
+    >>> add_integer(-10, -20)
+    -30
+
+
+String
+======
+
+tests for string passed
+
+::
+
+    >>> add_integer(4, "School")
+    Traceback (most recent call last):
+    TypeError: b must be an integer
+
+test when a is string
+
+::
+
+    >>> add_integer("Holberton", 5)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+test if both a and b are strings
+
+::
+
+    >>> add_integer("Holberton", "programmers")
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+Not numbers
+===========
+
+test if None is passed
+
+::
+
+    >>> add_integer(None)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+test if only b is passed None
+
+::
+
+    >>> add_integer(2.5, None)
+    Traceback (most recent call last):
+    TypeError: b must be an integer
+
+
+test for infifnity number
+
+::
+
+    >>> add_integer(float('inf'))
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+
+::
+
+    >>> add_integer(2, float('inf'))
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+
+Test if NaN is passed
+
+::
+
+    >>> add_integer(float('nan'))
+    Traceback (most recent call last):
+    ValueError: cannot convert float NaN to integer
+
+
+::
+
+    >>> add_integer(2, float('nan'))
+    Traceback (most recent call last):
+    ValueError: cannot convert float NaN to integer
