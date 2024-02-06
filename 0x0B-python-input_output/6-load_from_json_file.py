@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-import json
 """6-load_from_json_file module """
+import json
 
 
 def load_from_json_file(filename):
