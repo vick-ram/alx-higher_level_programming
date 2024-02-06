@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-import sys
 """101-stats module"""
+import sys
 
 
 def print_stats(total_size, status_codes):
