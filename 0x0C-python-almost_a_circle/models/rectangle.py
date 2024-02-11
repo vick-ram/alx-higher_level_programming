@@ -81,10 +81,20 @@ class Rectangle(Base):
         """prints in stdout the Rectangle instance
         with the character
         """
+        for _ in range(self.y):
+            print()
         for _ in range(self.height):
+            print(' ' * self.x, end='')
             print('#' * self.width)
 
     @property
     def __str__(self):
         """returns formatted string"""
         return ("[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height))
+
+    @property
+    def update(self, *args):
+        """assigns an argument to each attribute"""
+        attributes = ["id", "width", "height", "x", "y"]
+        for i in range(len(args)):
+            setattr(self, attributes[i], args[i])
