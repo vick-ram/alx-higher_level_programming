@@ -17,8 +17,8 @@ class Rectangle(Base):
         self.y = y
 
     @property
-    """defines the width"""
     def width(self):
+        """defines the width"""
         return self.__width
 
     @width.setter
