@@ -75,7 +75,7 @@ class Rectangle(Base):
     @property
     def area(self):
         """computes the area and returns result"""
-        return self.__width * self.__height
+        return self.width * self.height
 
     @property
     def display(self):
