@@ -24,3 +24,13 @@ class Square(Rectangle):
         """prints well formatted string of an object"""
         return ("[Square] ({}) {}/{} - {}"
                 .format(self.id, self.x, self.y, self.width))
+
+    def update(self, *args, **kwargs):
+        """a class that assigns attributes"""
+        if args:
+            attr = ["id", "size", "x", "y"]
+            for i, arg in enumerate(args):
+                setattr(self, attr[i], arg)
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
