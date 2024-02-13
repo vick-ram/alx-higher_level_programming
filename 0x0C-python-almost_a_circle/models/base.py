@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """base module"""
 import json
+import csv
+import turtle
 
 
 class Base:
@@ -71,3 +73,60 @@ class Base:
                 [obj.to_dictionary() for obj in list_objs]
             )
             file.write(json_string)
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Serializes a list of Rectangle objects to CSV file"""
+        filename = cls.__name__ + ".csv"
+        with open(filename, 'w', newline='') as file:
+            writer = csv.writer(file)
+            for obj in list_objs:
+                writer.writerow([obj.id, obj.width, obj.height, obj.x, obj.y])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Deserializes a list of Rectangle objects from CSV file"""
+        filename = cls.__name__ + ".csv"
+        rectangles = []
+        try:
+            with open(filename, 'r', newline='') as file:
+                reader = csv.reader(file)
+                for row in reader:
+                    id, width, height, x, y = map(int, row)
+                    rectangles.append(cls(width, height, x, y, id))
+        except FileNotFoundError:
+            pass
+        return rectangles
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Draws all the rectangles and squares using Turtle graphics"""
+        turtle.speed(0)
+        turtle.bgcolor("white")
+        turtle.title("Rectangles and Squares")
+
+        for rectangle in list_rectangles:
+            turtle.penup()
+            turtle.goto(rectangle.x, rectangle.y)
+            turtle.pendown()
+            turtle.color("blue")
+            turtle.begin_fill()
+            for _ in range(2):
+                turtle.forward(rectangle.width)
+                turtle.left(90)
+                turtle.forward(rectangle.height)
+                turtle.left(90)
+            turtle.end_fill()
+
+        for square in list_squares:
+            turtle.penup()
+            turtle.goto(square.x, square.y)
+            turtle.pendown()
+            turtle.color("red")
+            turtle.begin_fill()
+            for _ in range(4):
+                turtle.forward(square.size)
+                turtle.left(90)
+            turtle.end_fill()
+
+        turtle.done()
