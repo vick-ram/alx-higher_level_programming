@@ -76,7 +76,6 @@ class Rectangle(Base):
         """computes the area and returns result"""
         return self.width * self.height
 
-    @property
     def display(self):
         """prints in stdout the Rectangle instance
         with the character
@@ -87,12 +86,10 @@ class Rectangle(Base):
             print(' ' * self.x, end='')
             print('#' * self.width)
 
-    @property
     def __str__(self):
         """returns formatted string"""
         return ("[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height))
 
-    @property
     def update(self, *args):
         """assigns an argument to each attribute"""
         attributes = ["id", "width", "height", "x", "y"]
