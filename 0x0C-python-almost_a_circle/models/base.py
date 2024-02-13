@@ -53,14 +53,14 @@ class Base:
         try:
             with open(filename, 'r') as file:
                 data = file.read()
-                if data:
-                    objects_data = cls.from_json_string(data)
-                    return ([cls.create(**obj_data)
-                            for obj_data in objects_data])
-                else:
-                    return []
         except FileNotFoundError:
             return []
+        if data == "[]":
+            return []
+        else:
+            objects_data = cls.from_json_string(data)
+            return ([cls.create(**obj_data)
+                    for obj_data in objects_data])
 
     @classmethod
     def save_to_file(cls, list_objs):
@@ -76,27 +76,34 @@ class Base:
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """Serializes a list of Rectangle objects to CSV file"""
+        """Serializes a list of Rectangle or Square objects to CSV file"""
         filename = cls.__name__ + ".csv"
         with open(filename, 'w', newline='') as file:
-            writer = csv.writer(file)
+            wr = csv.writer(file)
             for obj in list_objs:
-                writer.writerow([obj.id, obj.width, obj.height, obj.x, obj.y])
+                if cls.__name__ == "Rectangle":
+                    wr.writerow([obj.id, obj.width, obj.height, obj.x, obj.y])
+                elif cls.__name__ == "Square":
+                    wr.writerow([obj.id, obj.size, obj.x, obj.y])
 
     @classmethod
     def load_from_file_csv(cls):
-        """Deserializes a list of Rectangle objects from CSV file"""
+        """Deserializes a list of Rectangle or Square objects from CSV file"""
         filename = cls.__name__ + ".csv"
-        rectangles = []
+        objs = []
         try:
             with open(filename, 'r', newline='') as file:
                 reader = csv.reader(file)
                 for row in reader:
-                    id, width, height, x, y = map(int, row)
-                    rectangles.append(cls(width, height, x, y, id))
+                    if cls.__name__ == "Rectangle":
+                        id, width, height, x, y = map(int, row)
+                        objs.append(cls(width, height, x, y, id))
+                    elif cls.__name__ == "Square":
+                        id, size, x, y = map(int, row)
+                        objs.append(cls(size, x, y, id))
         except FileNotFoundError:
             pass
-        return rectangles
+        return objs
 
     @staticmethod
     def draw(list_rectangles, list_squares):
