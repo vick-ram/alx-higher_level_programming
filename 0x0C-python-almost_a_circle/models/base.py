@@ -25,7 +25,7 @@ class Base:
         else:
             json.dumps(list_dictionaries)
 
-    @classmethod
+    @staticmethod
     def from_json_string(cls, json_string):
         """Returns the list of the JSON string representation"""
         if json_string is None or len(json_string) == 0:
@@ -39,6 +39,8 @@ class Base:
             new_instance = cls(1, 1)
         elif cls.__name__ == "Square":
             new_instance = cls(1)
+        else:
+            return None
         new_instance.update(**dictionary)
         return new_instance
 
@@ -48,14 +50,21 @@ class Base:
         filename = cls.__name__ + ".json"
         try:
             with open(filename, 'r') as file:
-                return ([cls.create(**obj)
-                        for obj in cls.from_json_string(file.read())])
+                data = file.read()
+                if data:
+                    objects_data = cls.from_json_string(data)
+                    return ([cls.create(**obj_data)
+                            for obj_data in objects_data])
+                else:
+                    return []
         except FileNotFoundError:
             return []
 
     @classmethod
     def save_to_file(cls, list_objs):
         """Writes the JSON string representation of list_objs to a file"""
+        if list_objs is None:
+            list_objs = []
         filename = cls.__name__ + ".json"
         with open(filename, 'w') as file:
             json_string = cls.to_json_string(
