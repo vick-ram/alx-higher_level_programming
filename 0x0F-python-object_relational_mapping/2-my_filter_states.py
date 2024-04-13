@@ -20,9 +20,9 @@ if __name__ == "__main__":
     )
     cur = db.cursor()
 
-    query = """
+    query = ("""
         SELECT * FROM states WHERE name = %s ORDER BY id ASC
-    """
+    """)
     cur.execute(query, (state_name,))
 
     results = cur.fetchall()
