@@ -3,7 +3,7 @@
 and lists all cities of that state, using the database hbtn_0e_4_usa
 """
 import sys
-import db_connector
+from db_connector import connect_to_db
 
 if __name__ == "__main__":
     username = sys.argv[1]
@@ -11,7 +11,7 @@ if __name__ == "__main__":
     database = sys.argv[3]
     state_name = sys.argv[4]
 
-    db = db_connector.connect_to_db(username, password, database)
+    db = connect_to_db(username, password, database)
     cur = db.cursor()
 
     query = """
