@@ -1,14 +1,19 @@
 #!/usr/bin/python3
 """script that lists all cities from the database hbtn_0e_4_usa"""
 import sys
-import db_connector
+import MySQLdb
 
 if __name__ == "__main__":
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
 
-    db = db_connector.connect_to_db(username, password, database)
+    db = MySQLdb.connect(
+        host="localhost",
+        user=username,
+        password=password,
+        database=database
+    )
     cur = db.cursor()
 
     query = """
