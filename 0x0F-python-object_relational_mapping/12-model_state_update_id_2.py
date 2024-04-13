@@ -16,7 +16,7 @@ if __name__ == "__main__":
         "mysql+mysqldb://{}:{}@localhost:3306/{}"
         .format(username, password, database)
     )
-
+    Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
 
@@ -24,5 +24,5 @@ if __name__ == "__main__":
 
     if state:
         state.name = 'New Mexico'
-
+    session.commit()
     session.close()
