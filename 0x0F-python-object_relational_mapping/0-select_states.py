@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """A script to fetch and print all states from a database"""
 import sys
-import db_connector
+import MySQLdb
 
 if __name__ == "__main__":
     username = sys.argv[1]
