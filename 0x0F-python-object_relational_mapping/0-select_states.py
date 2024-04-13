@@ -11,7 +11,7 @@ if __name__ == "__main__":
     db = db_connector.connect_to_db(username, password, database)
     cur = db.cursor()
 
-    cur.execute("""SELECT * FROM states ORDER BY id ASC""")
+    cur.execute("SELECT * FROM states ORDER BY id ASC")
     results = cur.fetchall()
 
     for row in results:
