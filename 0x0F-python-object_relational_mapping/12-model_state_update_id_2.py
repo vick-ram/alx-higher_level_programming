@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""script that changes the name of a State
+object from the database hbtn_0e_6_usa
+"""
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -9,7 +12,10 @@ if __name__ == "__main__":
     password = sys.argv[2]
     database = sys.argv[3]
 
-    engine = create_engine("mysql+mysqldb://{}:{}@localhost:3306/{}".format(username, password, database))
+    engine = create_engine(
+        "mysql+mysqldb://{}:{}@localhost:3306/{}"
+        .format(username, password, database)
+    )
 
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -17,6 +23,6 @@ if __name__ == "__main__":
     state = session.query(State).filter(State.id == 2).first()
 
     if state:
-        state.name = 'New Mexico';
+        state.name = 'New Mexico'
 
     session.close()
