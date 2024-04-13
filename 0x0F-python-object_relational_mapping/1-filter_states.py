@@ -6,6 +6,7 @@ import db_connector
 import sys
 
 if __name__ == "__main__":
+    """Defines username, password and database name"""
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
