@@ -19,16 +19,14 @@ if __name__ == "__main__":
     )
     cur = db.cursor()
 
-    query = """
-        SELECT GROUP_CONCAT(cities.name SEPARATOR ', ')
-        FROM cities JOIN states ON cities.state_id = states.id
-        WHERE states.name = %s ORDER BY cities.id
-    """
+    query = ("""
+        SELECT cities.name FROM cities
+        JOIN states ON cities.state_id = states.id
+        WHERE states.name = %s
+        ORDER BY cities.id ASC
+    """)
     cur.execute(query, (state_name,))
-
-    res = cur.fetchone()[0]
-    if res:
-        print(res)
+    print(", ".join(map(lambda x: x[0], cur.fetchall())))
 
     cur.close()
     db.close()
