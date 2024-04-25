@@ -1,0 +1,1 @@
+The time complexity of the find_peak function is O(log(n)).
